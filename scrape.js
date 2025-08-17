@@ -14,6 +14,8 @@ const { chromium } = require('playwright');
     return nodes.map(n => n.innerText.trim());
   });
 
+  console.log('Certificaciones extraídas:', certs);
+
   console.log("Certificaciones encontradas:");
   certs.forEach(c => console.log("- " + c));
 
