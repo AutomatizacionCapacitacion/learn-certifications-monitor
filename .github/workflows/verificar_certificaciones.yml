@@ -1,1 +1,30 @@
-a
+name: Scraping de certificaciones Microsoft Learn
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scrape-learn-profile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repo
+        uses: actions/checkout@v3
+
+      - name: Instalar Node y Playwright
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          npm install -g playwright
+          playwright install chromium
+
+      - name: Crear script de scraping
+        run: |
+          echo "${{ secrets.SCRAPE_JS }}" > scrape.js
+
+      - name: Ejecutar scraping
+        run: node scrape.js
+
+      - name: Mostrar certificaciones
+        run: cat certs_actuales.txt
+
