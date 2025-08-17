@@ -7,10 +7,10 @@ const { chromium } = require('playwright');
     waitUntil: 'networkidle',
   });
 
-  await page.waitForSelector('#certificaciones-activas-table-record-list td:first-child', { timeout: 10000 });
+  await page.waitForSelector('#certificaciones-activas-table-record-list tr:nth-child(1) > td:nth-child(1)', { timeout: 10000 });
 
   const certs = await page.evaluate(() => {
-    const nodes = [...document.querySelectorAll('#certificaciones-activas-table-record-list td:first-child')];
+    const nodes = [...document.querySelectorAll('#certificaciones-activas-table-record-list tr:nth-child(1) > td:nth-child(1)')];
     return nodes.map(n => n.innerText.trim());
   });
 
