@@ -18,9 +18,9 @@ jobs:
           npm install -g playwright
           playwright install chromium
 
-      - name: Crear script de scraping
+      - name: Crear script de scraping desde base64
         run: |
-          printf '%s' "${{ secrets.SCRAPE_JS }}" > scrape.js
+          echo "${{ secrets.SCRAPE_JS_B64 }}" | base64 -d > scrape.js
 
       - name: Ejecutar scraping
         run: node scrape.js
