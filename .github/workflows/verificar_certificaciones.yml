@@ -20,7 +20,7 @@ jobs:
 
       - name: Crear script de scraping
         run: |
-          echo "${{ secrets.SCRAPE_JS }}" > scrape.js
+          printf '%s' "${{ secrets.SCRAPE_JS }}" > scrape.js
 
       - name: Ejecutar scraping
         run: node scrape.js
