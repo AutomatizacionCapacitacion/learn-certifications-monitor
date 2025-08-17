@@ -10,7 +10,7 @@ const { chromium } = require('playwright');
   await page.waitForTimeout(5000); // esperamos que cargue el contenido dinámico
 
   const certs = await page.evaluate(() => {
-    const nodes = [...document.querySelectorAll('#certificaciones-activas-table-record-list td:first-child')];
+    const nodes = [...document.querySelectorAll('#certificaciones-activas-table-record-list td:first-child', { timeout: 10000 })];
     return nodes.map(n => n.innerText.trim());
   });
 
